@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-// import './itemList.css';
+import gotService from '../../services/gotService';
 import styled from 'styled-components';
+import Spinner from '../spinner';
 
 const ItemListUl = styled.ul`
     .list-group-item {
@@ -8,19 +9,47 @@ const ItemListUl = styled.ul`
     }
 `;
 export default class ItemList extends Component {
+    gotService = new gotService();
+
+    state = {
+        charList: null
+    }
+    componentDidMount() {
+        this.gotService.getAllCharacters()
+            .then((charList) => {
+                console.log(charList);
+                this.setState({
+                    charList
+                })
+            })
+    }
+
+    renderItems(arr) {
+        return arr.map((item) => {
+            const {id, name} = item;
+            return (
+                <li className="list-group-item"
+                    key={id}
+                    onClick={() => this.props.onCharSelected(id)}
+                >
+                    {name}
+                </li>
+            )
+        })
+    }
 
     render() {
+        const {charList} = this.state;
+
+        if(!charList) {
+            return <Spinner />
+        }
+
+        const items = this.renderItems(charList);
+
         return (
-            <ItemListUl className="item-list list-group">
-                <li className="list-group-item">
-                    John Snow
-                </li>
-                <li className="list-group-item">
-                    Brandon Stark
-                </li>
-                <li className="list-group-item">
-                    Geremy
-                </li>
+            <ItemListUl>
+                {items}
             </ItemListUl>
         );
     }

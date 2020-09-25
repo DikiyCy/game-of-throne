@@ -46,7 +46,8 @@ const Button = styled.button`
 
 export default class App extends Component {
     state = {
-        showRandomChar: true
+        showRandomChar: true,
+        selectedChar: null
     }
     onToggleClass = () => {
         this.setState((state) => {
@@ -54,6 +55,12 @@ export default class App extends Component {
                 showRandomChar: !state.showRandomChar
             }
         });
+    }
+    onCharSelected = (id) => {
+        console.log('Нажал,бля, на ' + id + ' !!')
+        this.setState({
+            selectedChar: id,
+        })
     }
 
     render() {
@@ -77,10 +84,14 @@ export default class App extends Component {
                     </Row>
                     <Row>
                         <Col md='6'>
-                            <ItemList />
+                            <ItemList
+                                onCharSelected={this.onCharSelected}
+                            />
                         </Col>
                         <Col md='6'>
-                            <CharDetails />
+                            <CharDetails
+                                charId={this.state.selectedChar}
+                            />
                         </Col>
                     </Row>
                 </Container>
