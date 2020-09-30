@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
+import CharacterPage from '../characterPage';
+import ErrorMessage from '../errorMessage';
 
 import styled from 'styled-components';
 
@@ -47,7 +47,7 @@ const Button = styled.button`
 export default class App extends Component {
     state = {
         showRandomChar: true,
-        selectedChar: null
+        error: false
     }
     onToggleClass = () => {
         this.setState((state) => {
@@ -56,15 +56,18 @@ export default class App extends Component {
             }
         });
     }
-    onCharSelected = (id) => {
-        console.log('Нажал,бля, на ' + id + ' !!')
+    componentDidCatch() {
+        console.log('error');
         this.setState({
-            selectedChar: id,
+            error: true
         })
     }
 
     render() {
-        const {showRandomChar} = this.state;
+        const {showRandomChar, error} = this.state;
+        if (error ) {
+            return <ErrorMessage />
+        }
         const randomChar = showRandomChar ? <RandomChar /> : null;
         return (
             <AppDiv>
@@ -82,18 +85,7 @@ export default class App extends Component {
                         </Button>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md='6'>
-                            <ItemList
-                                onCharSelected={this.onCharSelected}
-                            />
-                        </Col>
-                        <Col md='6'>
-                            <CharDetails
-                                charId={this.state.selectedChar}
-                            />
-                        </Col>
-                    </Row>
+                    <CharacterPage />
                 </Container>
             </AppDiv>
         )

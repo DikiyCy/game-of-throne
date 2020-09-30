@@ -28,7 +28,8 @@ export default class ItemList extends Component {
         return arr.map((item) => {
             const {id, name} = item;
             return (
-                <li className="list-group-item"
+                <li
+                    className="list-group-item"
                     key={id}
                     onClick={() => this.props.onCharSelected(id)}
                 >

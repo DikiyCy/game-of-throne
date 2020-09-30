@@ -24,7 +24,7 @@ export default class GotService {
     }
 
     async getAllCharacters() {
-        const res = await this.getResource(`/characters?page=5&pageSize=10`);
+        const res = await this.getResource(`/characters?page=34&pageSize=10`);
         console.log(res);
         return res.map(this._transformCharacter.bind(this));
     }
@@ -47,7 +47,7 @@ export default class GotService {
         if (data) {
             return data;
         } else {
-            return 'no data :(';
+            return 'no data :-(';
         }
     }
 
