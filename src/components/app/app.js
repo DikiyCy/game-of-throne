@@ -2,8 +2,12 @@ import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import CharacterPage from '../characterPage';
+import {CharacterPage, BooksPage, HousesPage} from '../pages';
+// import CharacterPage from '../characterPage';
+// import BooksPage from '../pages/booksPage';
+// import HousesPage from '../pages/housesPage';
 import ErrorMessage from '../errorMessage';
+import GotService from '../../services/gotService';
 
 import styled from 'styled-components';
 
@@ -45,6 +49,8 @@ const Button = styled.button`
 `;
 
 export default class App extends Component {
+    gotService = new GotService();
+
     state = {
         showRandomChar: true,
         error: false
@@ -57,7 +63,6 @@ export default class App extends Component {
         });
     }
     componentDidCatch() {
-        console.log('error');
         this.setState({
             error: true
         })
@@ -86,6 +91,8 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage />
+                    <BooksPage />
+                    <HousesPage />
                 </Container>
             </AppDiv>
         )

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import gotService from '../../services/gotService';
 import styled from 'styled-components';
 import Spinner from '../spinner';
 
@@ -9,44 +8,44 @@ const ItemListUl = styled.ul`
     }
 `;
 export default class ItemList extends Component {
-    gotService = new gotService();
 
     state = {
-        charList: null
+        itemList: null
     }
     componentDidMount() {
-        this.gotService.getAllCharacters()
-            .then((charList) => {
-                console.log(charList);
+        const {getData} = this.props;
+        getData()
+            .then((itemList) => {
                 this.setState({
-                    charList
+                    itemList
                 })
             })
     }
 
     renderItems(arr) {
         return arr.map((item) => {
-            const {id, name} = item;
+            const {id} = item;
+            const label = this.props.renderItem(item);
             return (
                 <li
                     className="list-group-item"
                     key={id}
-                    onClick={() => this.props.onCharSelected(id)}
+                    onClick={() => this.props.onItemSelected(id)}
                 >
-                    {name}
+                    {label}
                 </li>
             )
         })
     }
 
     render() {
-        const {charList} = this.state;
+        const {itemList} = this.state;
 
-        if(!charList) {
+        if(!itemList) {
             return <Spinner />
         }
 
-        const items = this.renderItems(charList);
+        const items = this.renderItems(itemList);
 
         return (
             <ItemListUl>

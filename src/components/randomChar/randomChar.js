@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Spinner from '../spinner';
 import ErrorMessage from '../errorMessage';
 
-const RendomCharDiv = styled.div`
+const RandomCharDiv = styled.div`
         background-color: #fff;
         padding: 25px 25px 15px 25px;
         margin-bottom: 40px;
@@ -14,7 +14,7 @@ const RendomCharDiv = styled.div`
         }
 `;
 
-const RendomCharSpan = styled.div`
+const RandomCharSpan = styled.div`
     font-weight: bold;
 `;
 
@@ -49,7 +49,6 @@ export default class RandomChar extends Component {
 
     updateCharacter = () => {
         const id = Math.floor(Math.random()*1140 + 25);
-        // const id = 11111111111111;
         this.gotService.getCharacter(id)
             .then(this.onCharLoaded)
             .catch(this.onError);
@@ -61,11 +60,11 @@ export default class RandomChar extends Component {
         const spinner = loading ? <Spinner/> : null;
         const content = !(loading || error) ? <View char={char}/> : null
         return (
-            <RendomCharDiv className="random-block rounded">
+            <RandomCharDiv className="random-block rounded">
                 {errorMessage}
                 {spinner}
                 {content}
-            </RendomCharDiv>
+            </RandomCharDiv>
         );
     }
 }
@@ -77,19 +76,19 @@ const View = ({char}) => {
             <h4>Random Character: {name}</h4>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item d-flex justify-content-between">
-                    <RendomCharSpan>Gender </RendomCharSpan>
+                    <RandomCharSpan>Gender </RandomCharSpan>
                     <span>{gender}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
-                    <RendomCharSpan>Born </RendomCharSpan>
+                    <RandomCharSpan>Born </RandomCharSpan>
                     <span>{born}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
-                    <RendomCharSpan>Died </RendomCharSpan>
+                    <RandomCharSpan>Died </RandomCharSpan>
                     <span>{died}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between">
-                    <RendomCharSpan>Culture </RendomCharSpan>
+                    <RandomCharSpan>Culture </RandomCharSpan>
                     <span>{culture}</span>
                 </li>
             </ul>
