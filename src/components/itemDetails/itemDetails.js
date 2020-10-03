@@ -8,11 +8,12 @@ const ItemDetailsDiv = styled.div`
         background-color: #fff;
         padding: 25px 25px 15px 25px;
         margin-bottom: 40px;
+        max-width: 540px;
         h4 {
             margin-bottom: 20px;
             text-align: center;
         }
-        .select-error {   /*потом изменить */
+        .select-error {
             color: #fff;
             text-align: center;
             font-size: 26px;
@@ -48,6 +49,7 @@ export default class ItemDetails extends Component {
         item: null
     }
     componentDidMount() {
+
         this.updateItem();
     }
     componentDidUpdate(prevProps) {
@@ -84,7 +86,6 @@ export default class ItemDetails extends Component {
                             return React.cloneElement(child, {item})
                         })
                     }
-
                 </ul>
             </ItemDetailsDiv>
         );

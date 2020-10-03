@@ -43,7 +43,7 @@ export default class GotService {
         return this._transformHouse(house);
     }
     isSet(data) {
-        if (data) {
+        if (data && data[0] !== "") {
             return data;
         } else {
             return 'no data :-(';

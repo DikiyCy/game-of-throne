@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Spinner from '../spinner';
 
 const ItemListUl = styled.ul`
+    padding: 0;
+    max-width: 540px;
+    border-radius: 5px;
     .list-group-item {
         cursor: pointer;
     }
@@ -30,7 +33,9 @@ export default class ItemList extends Component {
                 <li
                     className="list-group-item"
                     key={id}
-                    onClick={() => this.props.onItemSelected(id)}
+                    onClick={() => {
+                        this.props.onItemSelected(id);
+                    }}
                 >
                     {label}
                 </li>
