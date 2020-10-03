@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import GotService from '../../services/gotService';
 import ItemDetails, {Field} from '../itemDetails';
 import styled from 'styled-components';
@@ -6,6 +7,7 @@ import styled from 'styled-components';
 const BooksPageDiv = styled.div`
     background-color: red;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: url('https://static.tildacdn.com/tild3433-3262-4633-a165-336235613335/shapeimage_5.png') center center/contain no-repeat;
@@ -35,6 +37,7 @@ export default  class BooksItem extends Component {
                     <Field field='publisher' label='Publisher'/>
                     <Field field='released' label='Released'/>
                 </ItemDetails>
+                    <Link to="/books/">&#10229; Back to the list of books</Link>
             </BooksPageDiv>
         )
     }
