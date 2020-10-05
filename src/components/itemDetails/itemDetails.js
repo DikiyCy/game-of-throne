@@ -1,6 +1,4 @@
-import React, {Component} from 'react';
-import gotService from '../../services/gotService';
-
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 
@@ -42,52 +40,40 @@ export {
     Field
 }
 
-export default class ItemDetails extends Component {
-    gotService = new gotService();
+function ItemDetails({itemId, getItem, descr, children}) {
 
-    state = {
-        item: null
-    }
-    componentDidMount() {
+    const [item, newItemIUpdate] = useState(null);
 
-        this.updateItem();
-    }
-    componentDidUpdate(prevProps) {
-        if (this.props.itemId !== prevProps.itemId) {
-            this.updateItem();
-        }
-    }
-
-    updateItem = () => {
-        const {itemId, getItem} = this.props;
+    function updateItem() {
         if (!itemId) return;
 
         getItem(itemId)
-            .then((item) => {
-                this.setState({ item })
+            .then((data) => {
+                newItemIUpdate(data)
             })
     }
+    useEffect(() => {
+        updateItem();
+    }, [itemId])
 
-    render() {
-        if (!this.state.item) {
-            return <ErrorSpan className="select-error">
-                Please, selected a {this.props.descr}
-            </ErrorSpan>
-        }
-        const {item} = this.state;
-        const {name} = item;
-
-        return (
-            <ItemDetailsDiv className="char-details rounded">
-                <ItemDetailsTitle>{name}</ItemDetailsTitle>
-                <ul className="list-group list-group-flush">
-                    {
-                        React.Children.map(this.props.children, (child) => {
-                            return React.cloneElement(child, {item})
-                        })
-                    }
-                </ul>
-            </ItemDetailsDiv>
-        );
+    if (!item) {
+        return <ErrorSpan className="select-error">
+            Please, select a {descr}
+        </ErrorSpan>
     }
+    const {name} = item;
+    return (
+        <ItemDetailsDiv className="char-details rounded">
+            <ItemDetailsTitle>{name}</ItemDetailsTitle>
+            <ul className="list-group list-group-flush">
+                {
+                    React.Children.map(children, (child) => {
+                        return React.cloneElement(child, {item})
+                    })
+                }
+            </ul>
+        </ItemDetailsDiv>
+    );
 }
+
+export default ItemDetails;
