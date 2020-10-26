@@ -10,7 +10,7 @@ import GotService from '../../services/gotService';
 import styled from 'styled-components';
 
 const AppDiv = styled.div`
-    background: rgb(62,126,164) url('../img/got.jpg') center top/cover no-repeat;
+    background: rgb(62,126,164) url('img/got.jpg') center top/cover no-repeat;
     background-size: cover;
     height: 1000px;
     a {
