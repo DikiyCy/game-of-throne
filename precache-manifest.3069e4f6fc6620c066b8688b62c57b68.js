@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8f8862c92221259fe667ceeda6ae54d4",
+    "revision": "f90749c438c8a0d0408450e95d190704",
     "url": "/game-of-throne/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/game-of-throne/static/css/2.80dce9aa.chunk.css"
   },
   {
-    "revision": "c8df6e2f2e72769d4d89",
+    "revision": "6a8eeb979e0f7ce7cfca",
     "url": "/game-of-throne/static/css/main.746d4d77.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/game-of-throne/static/js/2.38a042c3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c8df6e2f2e72769d4d89",
-    "url": "/game-of-throne/static/js/main.c92a5e3b.chunk.js"
+    "revision": "6a8eeb979e0f7ce7cfca",
+    "url": "/game-of-throne/static/js/main.cb0cba0b.chunk.js"
   },
   {
     "revision": "628ede8104b94e92a7b2",
